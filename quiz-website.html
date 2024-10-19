@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Tech Wizard!</title>
+    <title>Happy Birthday, Mum!</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,11 +17,6 @@
         .container {
             text-align: center;
         }
-        .countdown {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #FF69B4;
-        }
         .quiz-container {
             background-color: white;
             padding: 20px;
@@ -32,7 +27,7 @@
             color: #FF69B4;
         }
         button {
-            background-color: #FF69B4;
+            background-color: #007BFF; /* Changed to blue */
             color: white;
             border: none;
             padding: 10px 20px;
@@ -41,7 +36,7 @@
             cursor: pointer;
         }
         button:hover {
-            background-color: #FF1493;
+            background-color: #0056b3;
         }
         input[type="text"] {
             width: 80%;
@@ -54,49 +49,16 @@
 </head>
 <body>
     <div class="container">
-        <div id="countdown" class="countdown"></div>
         <div id="quiz-container" class="quiz-container">
-            <!-- Quiz or landing page will be dynamically inserted here -->
+            <!-- Landing page -->
+            <h1>Hello Mum!</h1>
+            <p>I didn’t know how well to wish you a happy birthday, so I asked for a little help. The person who sent me sends their regards.</p>
+            <button onclick="showQuestions()">Received</button>
         </div>
     </div>
 
     <script>
-        // Set countdown to 3 minutes from now
-        let countdownTime = 3 * 60; // 3 minutes in seconds
-
-        // Update the countdown every second
-        const countdownInterval = setInterval(function () {
-            const minutes = Math.floor(countdownTime / 60);
-            const seconds = countdownTime % 60;
-
-            // Display the result in the countdown div
-            document.getElementById("countdown").innerHTML = `WE HAVE ${minutes} minutes ${seconds < 10 ? '0' : ''}${seconds} seconds TO YOUR BIRTHDAY. SIP A COFFEE AND COME BACK`;
-
-            // Decrease the countdown time
-            countdownTime--;
-
-            // If the countdown is over, show the landing page
-            if (countdownTime < 0) {
-                clearInterval(countdownInterval);
-                showLandingPage();
-            }
-        }, 1000);
-
-        function showLandingPage() {
-            document.getElementById("countdown").style.display = "none";
-            const quizContainer = document.getElementById('quiz-container');
-            quizContainer.innerHTML = `
-                <h1>🎉 Happy Birthday, Tech Wizard! 🎉</h1>
-                <p>Before you make your wish, let me ask you a few quick questions!</p>
-                <button onclick="startQuiz()">Start Questions</button>
-            `;
-        }
-
-        function startQuiz() {
-            showQuestion1();
-        }
-
-        function showQuestion1() {
+        function showQuestions() {
             const quizContainer = document.getElementById('quiz-container');
             quizContainer.innerHTML = `
                 <h1>If I was to buy you one birthday gift right now, what would that be?</h1>
@@ -109,7 +71,7 @@
             const answer1 = document.getElementById('answer1').value;
             const quizContainer = document.getElementById('quiz-container');
             quizContainer.innerHTML = `
-                <h1>What's your biggest achievement this last year?</h1>
+                <h1>What's your biggest achievement this past year?</h1>
                 <input type="text" id="answer2" placeholder="Enter your answer here">
                 <button onclick="showQuestion3()">Next</button>
             `;
@@ -133,10 +95,11 @@
             const body = `
                 Gift wish: ${answer1}\n
                 Biggest achievement: ${answer2}\n
-                Birthday wish: ${answer3}
+                Birthday wish: ${answer3}\n
+                \nYour loving daughter, Ava
             `;
 
-            window.location.href = `mailto:youremail@example.com?subject=Birthday Quiz Answers&body=${encodeURIComponent(body)}`;
+            window.location.href = `mailto:iqbalkhan19op@gmail.com?subject=Birthday Quiz Answers&body=${encodeURIComponent(body)}`;
         }
     </script>
 </body>
