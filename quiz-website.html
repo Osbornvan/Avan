@@ -43,6 +43,13 @@
         button:hover {
             background-color: #FF1493;
         }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
     </style>
 </head>
 <body>
@@ -67,7 +74,7 @@
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             // Display the result in the countdown div
-            document.getElementById("countdown").innerHTML = "Countdown: " + minutes + "m " + seconds + "s ";
+            document.getElementById("countdown").innerHTML = `${minutes} minutes ${seconds} seconds to your birthday`;
 
             // If the countdown is over, show the quiz
             if (distance < 0) {
@@ -81,73 +88,56 @@
             const quizContainer = document.getElementById('quiz-container');
             quizContainer.innerHTML = `
                 <h1>🎉 Happy Birthday, Tech Wizard! 🎉</h1>
-                <p>Let's test your wizardry skills with a fun quiz! Answer correctly to proceed.</p>
-                <button onclick="startQuiz()">Start Quiz</button>
+                <p>Before you make your wish, let me ask you a few quick questions!</p>
+                <button onclick="startQuiz()">Start Questions</button>
             `;
         }
-
-        const questions = [
-            {
-                question: "What's the first programming language you learned?",
-                answers: ["Python", "JavaScript", "C++", "Ruby"],
-                correct: 0
-            },
-            {
-                question: "What is the runtime of your favorite algorithm?",
-                answers: ["O(n)", "O(n^2)", "O(log n)", "O(1)"],
-                correct: 2
-            },
-            {
-                question: "Which cloud service do you use the most?",
-                answers: ["AWS", "Google Cloud", "Azure", "DigitalOcean"],
-                correct: 1
-            }
-        ];
-
-        let currentQuestion = 0;
 
         function startQuiz() {
-            currentQuestion = 0;
-            showQuestion();
+            showQuestion1();
         }
 
-        function showQuestion() {
-            const quizContainer = document.getElementById('quiz-container');
-            const question = questions[currentQuestion];
-
-            let html = `<h1>${question.question}</h1>`;
-            for (let i = 0; i < question.answers.length; i++) {
-                html += `<button onclick="checkAnswer(${i})">${question.answers[i]}</button>`;
-            }
-
-            quizContainer.innerHTML = html;
-        }
-
-        function checkAnswer(answer) {
-            if (answer === questions[currentQuestion].correct) {
-                currentQuestion++;
-                if (currentQuestion < questions.length) {
-                    showQuestion();
-                } else {
-                    showFinalPage();
-                }
-            } else {
-                alert("Try again, Tech Wizard! 🎩✨");
-            }
-        }
-
-        function showFinalPage() {
+        function showQuestion1() {
             const quizContainer = document.getElementById('quiz-container');
             quizContainer.innerHTML = `
-                <h1>Well done, Tech Wizard! 🧙‍♂️</h1>
-                <p>Please submit your answers and await further instructions on your quest.</p>
-                <form id="submissionForm" action="mailto:youremail@example.com" method="post" enctype="text/plain">
-                    <input type="hidden" name="Question 1" value="${questions[0].answers[questions[0].correct]}">
-                    <input type="hidden" name="Question 2" value="${questions[1].answers[questions[1].correct]}">
-                    <input type="hidden" name="Question 3" value="${questions[2].answers[questions[2].correct]}">
-                    <button type="submit">Submit Answers</button>
-                </form>
+                <h1>If I was to buy you one birthday gift right now, what would that be?</h1>
+                <input type="text" id="answer1" placeholder="Enter your answer here">
+                <button onclick="showQuestion2()">Next</button>
             `;
+        }
+
+        function showQuestion2() {
+            const answer1 = document.getElementById('answer1').value;
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = `
+                <h1>What's your biggest achievement this last year?</h1>
+                <input type="text" id="answer2" placeholder="Enter your answer here">
+                <button onclick="showQuestion3()">Next</button>
+            `;
+        }
+
+        function showQuestion3() {
+            const answer2 = document.getElementById('answer2').value;
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = `
+                <h1>Now, make a wish MUM 💫</h1>
+                <input type="text" id="answer3" placeholder="Enter your wish here">
+                <button onclick="submitAnswers()">Submit</button>
+            `;
+        }
+
+        function submitAnswers() {
+            const answer1 = document.getElementById('answer1').value;
+            const answer2 = document.getElementById('answer2').value;
+            const answer3 = document.getElementById('answer3').value;
+
+            const body = `
+                Gift wish: ${answer1}\n
+                Biggest achievement: ${answer2}\n
+                Birthday wish: ${answer3}
+            `;
+
+            window.location.href = `mailto:youremail@example.com?subject=Birthday Quiz Answers&body=${encodeURIComponent(body)}`;
         }
     </script>
 </body>
