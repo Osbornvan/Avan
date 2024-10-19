@@ -53,12 +53,26 @@
             <!-- Landing page -->
             <h1>Hello Mum!</h1>
             <p>I didn’t know how well to wish you a happy birthday, so I asked for a little help. The person who sent me sends their regards.</p>
-            <button onclick="showQuestions()">Received</button>
+            <button onclick="showIntroduction()">Received</button>
         </div>
     </div>
 
     <script>
-        function showQuestions() {
+        function showIntroduction() {
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = `
+                <h1>🎉 Happy Birthday, Mum! 🎉</h1>
+                <p>On your special day, I wanted to do something different, so here’s a small quiz to brighten your day and make you smile. These questions are meant to reflect on your amazing achievements and to see what special gift you would like this year!</p>
+                <p>You’ve always been the strongest, most loving, and caring person I know. I just want to make sure you know how much you mean to me. So, let’s dive in and make this birthday memorable!</p>
+                <button onclick="startQuiz()">Let’s Begin</button>
+            `;
+        }
+
+        function startQuiz() {
+            showQuestion1();
+        }
+
+        function showQuestion1() {
             const quizContainer = document.getElementById('quiz-container');
             quizContainer.innerHTML = `
                 <h1>If I was to buy you one birthday gift right now, what would that be?</h1>
@@ -95,11 +109,23 @@
             const body = `
                 Gift wish: ${answer1}\n
                 Biggest achievement: ${answer2}\n
-                Birthday wish: ${answer3}\n
-                \nYour loving daughter, Ava
+                Birthday wish: ${answer3}
             `;
 
             window.location.href = `mailto:iqbalkhan19op@gmail.com?subject=Birthday Quiz Answers&body=${encodeURIComponent(body)}`;
+
+            showClosingPage();
+        }
+
+        function showClosingPage() {
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = `
+                <h1>Thank You, Mum!</h1>
+                <p>I hope you enjoyed the little quiz. You’ve given me everything I could ever wish for, and I just want you to know how much I love and appreciate you.</p>
+                <p>Happy Birthday once again! Have an amazing day filled with love and happiness.</p>
+                <p>With all my love,</p>
+                <p><strong>Your Loving Daughter, Ava</strong></p>
+            `;
         }
     </script>
 </body>
