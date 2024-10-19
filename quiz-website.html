@@ -61,23 +61,22 @@
     </div>
 
     <script>
-        // Set the countdown date and time to 20/10/2024 00:01 local time
-        const countdownDate = new Date('2024-10-20T00:01:00').getTime();
+        // Set countdown to 3 minutes from now
+        let countdownTime = 3 * 60; // 3 minutes in seconds
 
         // Update the countdown every second
         const countdownInterval = setInterval(function () {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            // Calculate minutes and seconds
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const minutes = Math.floor(countdownTime / 60);
+            const seconds = countdownTime % 60;
 
             // Display the result in the countdown div
-            document.getElementById("countdown").innerHTML = `${minutes} minutes ${seconds} seconds to your birthday`;
+            document.getElementById("countdown").innerHTML = `WE HAVE ${minutes} minutes ${seconds < 10 ? '0' : ''}${seconds} seconds TO YOUR BIRTHDAY. SIP A COFFEE AND COME BACK`;
 
-            // If the countdown is over, show the quiz
-            if (distance < 0) {
+            // Decrease the countdown time
+            countdownTime--;
+
+            // If the countdown is over, show the landing page
+            if (countdownTime < 0) {
                 clearInterval(countdownInterval);
                 showLandingPage();
             }
