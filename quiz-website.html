@@ -115,8 +115,8 @@
             // Send answers via email
             window.location.href = `mailto:iqbalkhan19op@gmail.com?subject=Birthday Quiz Answers&body=${encodeURIComponent(body)}`;
 
-            // Show the closing page after sending the email
-            showClosingPage();
+            // Start the 5-second timer to transition to the final page
+            setTimeout(showClosingPage, 5000);
         }
 
         function showClosingPage() {
