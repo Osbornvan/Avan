@@ -87,36 +87,29 @@
             quizContainer.innerHTML = `
                 <h1>What's your biggest achievement this past year?</h1>
                 <input type="text" id="answer2" placeholder="Enter your answer here">
-                <button onclick="showQuestion3()">Next</button>
+                <button onclick="showFinalMessage()">Next</button>
             `;
         }
 
-        function showQuestion3() {
+        function showFinalMessage() {
             const answer2 = document.getElementById('answer2').value;
             const quizContainer = document.getElementById('quiz-container');
             quizContainer.innerHTML = `
-                <h1>Now, make a wish MUM 💫</h1>
-                <input type="text" id="answer3" placeholder="Enter your wish here">
-                <button onclick="submitAnswers()">Submit</button>
-            `;
-        }
-
-        function submitAnswers() {
-            const answer1 = document.getElementById('answer1').value;
-            const answer2 = document.getElementById('answer2').value;
-            const answer3 = document.getElementById('answer3').value;
-
-            const body = `
-                Gift wish: ${answer1}\n
-                Biggest achievement: ${answer2}\n
-                Birthday wish: ${answer3}
+                <h1>Now, Make a wish MUM 💫</h1>
+                <p>The next page will appear in <span id="countdown">5</span> seconds...</p>
             `;
 
-            // Send answers via email
-            window.location.href = `mailto:iqbalkhan19op@gmail.com?subject=Birthday Quiz Answers&body=${encodeURIComponent(body)}`;
+            // Start the 5-second countdown
+            let timeLeft = 5;
+            const countdownInterval = setInterval(function () {
+                timeLeft--;
+                document.getElementById('countdown').textContent = timeLeft;
 
-            // Start the 5-second timer to transition to the final page
-            setTimeout(showClosingPage, 5000);
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    showClosingPage();
+                }
+            }, 1000);
         }
 
         function showClosingPage() {
