@@ -112,17 +112,17 @@
                 Birthday wish: ${answer3}
             `;
 
+            // Send answers via email
             window.location.href = `mailto:iqbalkhan19op@gmail.com?subject=Birthday Quiz Answers&body=${encodeURIComponent(body)}`;
 
+            // Show the closing page after sending the email
             showClosingPage();
         }
 
         function showClosingPage() {
             const quizContainer = document.getElementById('quiz-container');
             quizContainer.innerHTML = `
-                <h1>Thank You, Mum!</h1>
-                <p>I hope you enjoyed the little quiz. You’ve given me everything I could ever wish for, and I just want you to know how much I love and appreciate you.</p>
-                <p>Happy Birthday once again! Have an amazing day filled with love and happiness.</p>
+                <h1>Enjoy your day, Mum!</h1>
                 <p>With all my love,</p>
                 <p><strong>Your Loving Daughter, Ava</strong></p>
             `;
